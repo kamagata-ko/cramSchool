@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cramSchool.mapper.B.B001Mapper">
+    <select id="create" resultType="com.example.cramSchool.entity.TAccountInfo" affectData="true">
+        INSERT INTO account (
+            user_name,
+            email,
+            password
+        ) VALUES (
+            #{userName}
+        , #{email}
+        , #{password}
+        ) RETURNING id, user_name, email, password
+    </select>
+    <select id="selectByEmail" resultType="com.example.cramSchool.entity.TAccountInfo">
+        SELECT * FROM account WHERE email = #{email}
+    </select>
+    <select id="selectById" resultType="com.example.cramSchool.entity.TAccountInfo">
+        SELECT * FROM account WHERE password = #{password} AND email = #{email} LIMIT 1
+    </select>
+</mapper>

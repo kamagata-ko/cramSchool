@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cramSchool.mapper.A001Mapper">
+    <select id="selectAll" resultType="com.example.cramSchool.entity.TStudentsDto">
+        select
+            studentId
+            ,name
+            ,email
+            ,phone
+            ,address
+            ,dateOfBirth
+            ,gender
+        from
+            Students
+    </select>
+</mapper>

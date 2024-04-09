@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Top</title>
+</head>
+<body>
+<h1>学生ごとの月謝</h1>
+<table border="1">
+    <tr>
+        <th>学生名</th>
+        <th>合計金額</th>
+    </tr>
+    <tr th:each="info: ${priceInfo}">
+        <td th:text="${info.name}"></td>
+        <td th:text="${info.totalPrice}"></td>
+    </tr>
+</table>
+<h1>明細</h1>
+<table border="1">
+    <tr>
+        <th>学生名</th>
+        <th>曜日</th>
+        <th>授業名</th>
+        <th>料金</th>
+    </tr>
+    <tr th:each="info: ${studentInfo}">
+        <td th:text="${info.name}"></td>
+        <td th:text="${info.bookingweek}"></td>
+        <td th:text="${info.coursename}"></td>
+        <td th:text="${info.price}"></td>
+    </tr>
+</table>
+<h1>学生情報登録フォーム</h1>
+<form th:action="@{student/confirmation}" th:object="${studentRequest}" th:method="post">
+    <p>氏名</p>
+    <input type="text" th:field="*{name}">
+    <p>Email</p>
+    <input type="text" th:field="*{email}">
+    <p>電話番号</p>
+    <input type="text" th:field="*{phone}">
+    <input type="submit" value="登録">
+</form>
+<!--<form >-->
+<!--    <p>氏名</p>-->
+<!--    <input type="text">-->
+<!--    <p>Email</p>-->
+<!--    <input type="text">-->
+<!--    <p>電話番号</p>-->
+<!--    <input type="text">-->
+<!--    <input type="submit" value="登録">-->
+<!--</form>-->
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <title>学生情報一覧</title>
+</head>
+<body>
+<div class="container">
+<!--    <th:block th:if="${B002.userName == null}">-->
+<!--        <form th:action="@{/B002/init}" method="post">-->
+<!--            <input type="submit" value="ログイン">-->
+<!--        </form>-->
+<!--    </th:block>-->
+<!--    <th:block th:if="${B002.userName != ''}">-->
+<!--        <p th:text="${B002.userName}">-->
+<!--    </th:block>-->
+    <th:block th:if="${!session.containsKey('account')}">
+        <form th:action="@{/B002/init}" method="post">
+            <input type="submit" value="ログイン">
+        </form>
+    </th:block>
+    <th:block th:if="${session.containsKey('account')}">
+        <p th:text="${session.account.userName}" />
+        <form th:action="@{/A001/logout}" method="post">
+            <input type="submit" value="ログアウト">
+        </form>
+    </th:block>
+    <h1>学生情報一覧</h1>
+    <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>氏名</th>
+            <th>Email</th>
+            <th>電話番号</th>
+            <th>住所</th>
+            <th>生年月日</th>
+            <th>性別</th>
+        </tr>
+        <tr th:each="info: ${A001}">
+            <td th:text="${info.studentId}"></td>
+            <td th:text="${info.name}"></td>
+            <td th:text="${info.email}"></td>
+            <td th:text="${info.phone}"></td>
+            <td th:text="${info.address}"></td>
+            <td th:text="${info.dateOfBirth}"></td>
+            <td th:text="${info.gender}"></td>
+        </tr>
+    </table>
+    <form th:action="@{/A002/init}" method="get">
+        <input type="submit" value="学生情報登録">
+    </form>
+</div>
+</body>
+</html>

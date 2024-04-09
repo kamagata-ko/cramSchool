@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cramSchool.mapper.TopMapper">
+    <select id="selectAll" resultType="com.example.cramSchool.entity.StudentInfo">
+        select
+        A.name
+        ,B.bookingweek
+        ,C.coursename
+        ,C.price
+        from Students A
+        left join Bookings B
+        on A.studentid = B.studentid
+        left join Courses C
+        on C.courseid = B.courseid
+    </select>
+    <insert id="insert">
+        insert INTO Students (
+            Name
+            , Email
+            , Phone
+            , Gender
+        )
+        VALUES (
+            #{name}
+            , #{email}
+            , #{phone}
+            , 0
+        )
+    </insert>
+</mapper>

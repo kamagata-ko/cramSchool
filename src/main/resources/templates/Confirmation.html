@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation</title>
+</head>
+<body>
+<h1>登録内容確認画面</h1>
+<p>以下の内容でお間違いないでしょうか？</p>
+<p>氏名：<span th:text="${studentInfo.name}"></span></p>
+<p>Email：<span th:text="${studentInfo.email}"></span></p>
+<p>電話番号：<span th:text="${studentInfo.phone}"></span></p>
+<form th:action="@{student/confirmation}" th:object="${studentRequest}" th:method="post">
+    <p>氏名</p>
+    <input type="text" th:field="*{name}">
+    <p>Email</p>
+    <input type="text" th:field="*{email}">
+    <p>電話番号</p>
+    <input type="text" th:field="*{phone}">
+    <input type="submit" value="登録">
+</form>
+</body>
+</html>
